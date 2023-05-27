@@ -1,0 +1,122 @@
+@prefix : <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> .
+
+<https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#after
+:after rdf:type owl:ObjectProperty ;
+       owl:inverseOf :isPreconditionOf ;
+       rdf:type owl:TransitiveProperty ;
+       rdfs:domain :SubActivity ;
+       rdfs:range :Precondition .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#before
+:before rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        owl:inverseOf :hasSuccessor ;
+        rdf:type owl:TransitiveProperty ;
+        rdfs:domain :Successor ;
+        rdfs:range :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasOptional
+:hasOptional rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasSubActivity ;
+             owl:inverseOf :isOptional ;
+             rdfs:domain :SubActivity ;
+             rdfs:range :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasSubActivity
+:hasSubActivity rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf :isSubActivityOf ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain :Activity ;
+                rdfs:range :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasSuccessor
+:hasSuccessor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain :SubActivity ;
+              rdfs:range :Successor .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#isOptional
+:isOptional rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :isSubActivityOf ;
+            rdfs:domain :SubActivity ;
+            rdfs:range :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#isPreconditionOf
+:isPreconditionOf rdf:type owl:ObjectProperty ,
+                           owl:TransitiveProperty ;
+                  rdfs:domain :Precondition ;
+                  rdfs:range :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#isSubActivityOf
+:isSubActivityOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain :SubActivity ;
+                 rdfs:range :Activity .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdfs:domain :Activity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasPriority
+:hasPriority rdf:type owl:DatatypeProperty ;
+             rdfs:domain :SubActivity ;
+             rdfs:range xsd:positiveInteger .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasSubActivity ;
+                            owl:someValuesFrom :SubActivity
+                          ] .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#Precondition
+:Precondition rdf:type owl:Class ;
+              rdfs:subClassOf :SubActivity .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#SubActivity
+:SubActivity rdf:type owl:Class ;
+             rdfs:subClassOf :Activity ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasPriority ;
+                               owl:someValuesFrom xsd:positiveInteger
+                             ] .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#Successor
+:Successor rdf:type owl:Class ;
+           rdfs:subClassOf :SubActivity .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
