@@ -5,7 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix strc: <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
-@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl> .
+@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#> .
 
 <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl> rdf:type owl:Ontology ;
                                                                                     owl:imports <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> .
@@ -17,25 +17,37 @@
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addPasta
 :addPasta rdf:type owl:NamedIndividual ,
                    strc:SubActivity ;
-          strc:isSubActivityOf :cookPasta .
+          strc:after :addSalt ;
+          strc:hasSuccessor :prepareSeasoning ,
+                            :waitCooking ;
+          strc:isSubActivityOf :cookPasta ;
+          strc:hasPriority 3 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addSalt
 :addSalt rdf:type owl:NamedIndividual ,
                   strc:SubActivity ;
-         strc:isSubActivityOf :cookPasta .
+         strc:after :boilWater ;
+         strc:hasSuccessor :addPasta ;
+         strc:isSubActivityOf :cookPasta ;
+         strc:hasPriority 2 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addWater
 :addWater rdf:type owl:NamedIndividual ,
                    strc:SubActivity ;
-          strc:isSubActivityOf :prepareSeasoning .
+          strc:after :grateParmesan ;
+          strc:hasSuccessor :mix ;
+          strc:isSubActivityOf :prepareSeasoning ;
+          strc:hasPriority 2 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#boilWater
 :boilWater rdf:type owl:NamedIndividual ,
                     strc:SubActivity ;
-           strc:isSubActivityOf :cookPasta .
+           strc:hasSuccessor :addSalt ;
+           strc:isSubActivityOf :cookPasta ;
+           strc:hasPriority 1 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#cookPasta
@@ -46,56 +58,81 @@
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#drainPasta
 :drainPasta rdf:type owl:NamedIndividual ,
                      strc:SubActivity ;
-            strc:isSubActivityOf :cookPasta .
+            strc:after :waitCooking ;
+            strc:hasSuccessor :seasonPasta ;
+            strc:isSubActivityOf :cookPasta ;
+            strc:hasPriority 5 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#grateParmesan
 :grateParmesan rdf:type owl:NamedIndividual ,
                         strc:SubActivity ;
-               strc:isSubActivityOf :prepareSeasoning .
+               strc:hasSuccessor :addWater ;
+               strc:isSubActivityOf :prepareSeasoning ;
+               strc:hasPriority 1 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#mix
 :mix rdf:type owl:NamedIndividual ,
               strc:SubActivity ;
-     strc:isSubActivityOf :prepareSeasoning .
+     strc:after :addWater ,
+                :tostPepper ;
+     strc:isSubActivityOf :prepareSeasoning ;
+     strc:hasPriority 3 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#prepareDessert
 :prepareDessert rdf:type owl:NamedIndividual ,
                          strc:SubActivity ;
-                strc:isOptional :waitCooking .
+                strc:after :waitCooking ;
+                strc:isOptional :waitCooking ;
+                strc:hasPriority 5 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#prepareSeasoning
 :prepareSeasoning rdf:type owl:NamedIndividual ,
                            strc:Activity ,
                            strc:SubActivity ;
-                  strc:isSubActivityOf :cookPasta .
+                  strc:after :addPasta ;
+                  strc:hasSuccessor :seasonPasta ;
+                  strc:isSubActivityOf :cookPasta ;
+                  strc:hasPriority 4 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#seasonPasta
 :seasonPasta rdf:type owl:NamedIndividual ,
                       strc:SubActivity ;
-             strc:isSubActivityOf :cookPasta .
+             strc:after :drainPasta ,
+                        :prepareSeasoning ;
+             strc:hasSuccessor :servePasta ;
+             strc:isSubActivityOf :cookPasta ;
+             strc:hasPriority 6 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#servePasta
 :servePasta rdf:type owl:NamedIndividual ,
                      strc:SubActivity ;
-            strc:isSubActivityOf :cookPasta .
+            strc:after :seasonPasta ;
+            strc:isSubActivityOf :cookPasta ;
+            strc:hasPriority 7 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#tostPepper
 :tostPepper rdf:type owl:NamedIndividual ,
                      strc:SubActivity ;
-            strc:isSubActivityOf :prepareSeasoning .
+            strc:hasSuccessor :mix ;
+            strc:isSubActivityOf :prepareSeasoning ;
+            strc:hasPriority 1 .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#waitCooking
 :waitCooking rdf:type owl:NamedIndividual ,
                       strc:SubActivity ;
-             strc:isSubActivityOf :cookPasta .
+             strc:after :addPasta ;
+             strc:hasOptional :prepareDessert ;
+             strc:hasSuccessor :drainPasta ;
+             strc:isSubActivityOf :cookPasta ;
+             strc:hasPriority 4 .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
