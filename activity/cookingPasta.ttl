@@ -5,7 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix strc: <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
-@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#> .
+@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl> .
 
 <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl> rdf:type owl:Ontology ;
                                                                                     owl:imports <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> .
