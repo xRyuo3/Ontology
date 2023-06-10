@@ -4,7 +4,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> .
+@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
 
 <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> rdf:type owl:Ontology .
 
@@ -17,7 +17,9 @@
        owl:inverseOf :isPreconditionOf ;
        rdf:type owl:TransitiveProperty ;
        rdfs:domain :SubActivity ;
-       rdfs:range :Precondition .
+       rdfs:range :Precondition ;
+       rdfs:comment "The \":after\" property represents the relationship where a subactivity follows another subactivity in a procedural workflow. It denotes the sequence of execution between two subactivities." ;
+       rdfs:label "after" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#before
@@ -26,7 +28,9 @@
         owl:inverseOf :hasSuccessor ;
         rdf:type owl:TransitiveProperty ;
         rdfs:domain :Successor ;
-        rdfs:range :SubActivity .
+        rdfs:range :SubActivity ;
+        rdfs:comment "The \"before\" property represents that a subactivity comes before another subactivity in a procedural workflow." ;
+        rdfs:label "before" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasOptional
@@ -34,7 +38,9 @@
              rdfs:subPropertyOf :hasSubActivity ;
              owl:inverseOf :isOptional ;
              rdfs:domain :SubActivity ;
-             rdfs:range :SubActivity .
+             rdfs:range :SubActivity ;
+             rdfs:comment "The \"isOptional\" property signifies that a subactivity is an optional component of another subactivity. It denotes that a subactivity may or may not be present or executed within another subactivity." ;
+             rdfs:label "is optonal" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasSubActivity
@@ -43,7 +49,9 @@
                 owl:inverseOf :isSubActivityOf ;
                 rdf:type owl:TransitiveProperty ;
                 rdfs:domain :Activity ;
-                rdfs:range :SubActivity .
+                rdfs:range :SubActivity ;
+                rdfs:comment "The \":hasSubActivity\" property represents the relationship between an activity and its subactivities. It denotes that an activity contains or includes one or more subactivities as part of its execution." ;
+                rdfs:label "has sub-activity" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasSuccessor
@@ -51,7 +59,9 @@
               rdfs:subPropertyOf owl:topObjectProperty ;
               rdf:type owl:TransitiveProperty ;
               rdfs:domain :SubActivity ;
-              rdfs:range :Successor .
+              rdfs:range :Successor ;
+              rdfs:comment "The \"hasSuccessor\" property represents the relationship where a subactivity is followed by another subactivity in a procedural workflow. It denotes the sequence of execution between two subactivities." ;
+              rdfs:label "has successor" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#isOptional
@@ -65,13 +75,17 @@
 :isPreconditionOf rdf:type owl:ObjectProperty ,
                            owl:TransitiveProperty ;
                   rdfs:domain :Precondition ;
-                  rdfs:range :SubActivity .
+                  rdfs:range :SubActivity ;
+                  rdfs:comment "The \"isPreconditionOf\" property represents the relationship where a precondition is associated with a subactivity. It signifies that the subactivity depends on the fulfillment of the specified precondition before it can be executed." ;
+                  rdfs:label "is precondition of" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#isSubActivityOf
 :isSubActivityOf rdf:type owl:ObjectProperty ;
                  rdfs:domain :SubActivity ;
-                 rdfs:range :Activity .
+                 rdfs:range :Activity ;
+                 rdfs:comment "he \":isSubActivityOf\" property represents the relationship where a subactivity is part of or belongs to a higher-level activity. It denotes the hierarchical structure between a subactivity and its parent activity." ;
+                 rdfs:label "is sub-activity of" .
 
 
 #################################################################
@@ -85,7 +99,9 @@ owl:topDataProperty rdfs:domain :Activity .
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#hasPriority
 :hasPriority rdf:type owl:DatatypeProperty ;
              rdfs:domain :SubActivity ;
-             rdfs:range xsd:positiveInteger .
+             rdfs:range xsd:positiveInteger ;
+             rdfs:comment "The \":hasPriority\" property represents the priority level assigned to a subactivity. It signifies the relative importance or order in which the subactivities should be executed within an activity." ;
+             rdfs:label "has priority" .
 
 
 #################################################################
@@ -97,12 +113,16 @@ owl:topDataProperty rdfs:domain :Activity .
           rdfs:subClassOf [ rdf:type owl:Restriction ;
                             owl:onProperty :hasSubActivity ;
                             owl:someValuesFrom :SubActivity
-                          ] .
+                          ] ;
+          rdfs:comment "The \"Activity\" class represents a generic action or task within a procedural workflow. It serves as a high-level abstraction for various actions or steps involved in a process." ;
+          rdfs:label "activity" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#Precondition
 :Precondition rdf:type owl:Class ;
-              rdfs:subClassOf :SubActivity .
+              rdfs:subClassOf :SubActivity ;
+              rdfs:comment "The \"Precondition\" class represents a condition or requirement that needs to be met before an activity or subactivity can be executed. It defines the dependencies or constraints that must be satisfied for the successful execution of the associated activity." ;
+              rdfs:label "precondition" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#SubActivity
@@ -111,12 +131,16 @@ owl:topDataProperty rdfs:domain :Activity .
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :hasPriority ;
                                owl:someValuesFrom xsd:positiveInteger
-                             ] .
+                             ] ;
+             rdfs:comment "The \"SubActivity\" class represents a specific sub-action or sub-task that is part of a larger activity. It provides a way to break down complex activities into smaller, manageable components." ;
+             rdfs:label "sub-activity" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#Successor
 :Successor rdf:type owl:Class ;
-           rdfs:subClassOf :SubActivity .
+           rdfs:subClassOf :SubActivity ;
+           rdfs:comment "The \"Successor\" class represents an activity or subactivity that follows another activity in a procedural workflow. It denotes the next step or task that should be executed after the completion of the preceding activity." ;
+           rdfs:label "successor" .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
