@@ -4,7 +4,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix strc: <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
+@prefix pks: <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
 @base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#> .
 
 <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl> rdf:type owl:Ontology ;
@@ -16,149 +16,149 @@
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addPasta
 :addPasta rdf:type owl:NamedIndividual ,
-                   strc:SubActivity ;
-          strc:after :addSalt ;
-          strc:hasSuccessor :prepareSeasoning ,
+                   pks:SubActivity ;
+          pks:after :addSalt ;
+          pks:hasSuccessor :prepareSeasoning ,
                             :waitCooking ;
-          strc:isSubActivityOf :cookPasta ;
-          strc:hasPriority 3 ;
+          pks:isSubActivityOf :cookPasta ;
+          pks:hasPriority 3 ;
           rdfs:comment "Represents the step of adding pasta to a pot or container before cooking it." ;
           rdfs:label "add pasta" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addSalt
 :addSalt rdf:type owl:NamedIndividual ,
-                  strc:SubActivity ;
-         strc:after :boilWater ;
-         strc:hasSuccessor :addPasta ;
-         strc:isSubActivityOf :cookPasta ;
-         strc:hasPriority 2 ;
+                  pks:SubActivity ;
+         pks:after :boilWater ;
+         pks:hasSuccessor :addPasta ;
+         pks:isSubActivityOf :cookPasta ;
+         pks:hasPriority 2 ;
          rdfs:comment "Represents the action of adding salt to the water when boiling pasta, which enhances its flavor." ;
          rdfs:label "add salt" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#addWater
 :addWater rdf:type owl:NamedIndividual ,
-                   strc:SubActivity ;
-          strc:after :grateParmesan ;
-          strc:hasSuccessor :mix ;
-          strc:isSubActivityOf :prepareSeasoning ;
-          strc:hasPriority 2 ;
+                   pks:SubActivity ;
+          pks:after :grateParmesan ;
+          pks:hasSuccessor :mix ;
+          pks:isSubActivityOf :prepareSeasoning ;
+          pks:hasPriority 2 ;
           rdfs:comment "Involves the action of adding water to a pot or container, which will be used later for cooking or mixing with other ingredients." ;
           rdfs:label "add water" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#boilWater
 :boilWater rdf:type owl:NamedIndividual ,
-                    strc:SubActivity ;
-           strc:hasSuccessor :addSalt ;
-           strc:isSubActivityOf :cookPasta ;
-           strc:hasPriority 1 ;
+                    pks:SubActivity ;
+           pks:hasSuccessor :addSalt ;
+           pks:isSubActivityOf :cookPasta ;
+           pks:hasPriority 1 ;
            rdfs:comment "Represents the process of heating water in a pot until it reaches its boiling point." ;
            rdfs:label "boil water" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#cookPasta
 :cookPasta rdf:type owl:NamedIndividual ,
-                    strc:Activity ;
+                    pks:Activity ;
            rdfs:comment "Cooking pasta refers to the process of preparing pasta for consumption. This culinary activity involves several key steps." ;
            rdfs:label "cook some pasta" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#drainPasta
 :drainPasta rdf:type owl:NamedIndividual ,
-                     strc:SubActivity ;
-            strc:after :waitCooking ;
-            strc:hasSuccessor :seasonPasta ;
-            strc:isSubActivityOf :cookPasta ;
-            strc:hasPriority 5 ;
+                     pks:SubActivity ;
+            pks:after :waitCooking ;
+            pks:hasSuccessor :seasonPasta ;
+            pks:isSubActivityOf :cookPasta ;
+            pks:hasPriority 5 ;
             rdfs:comment "Represents the action of removing the cooked pasta from the pot or container and separating it from the water used for boiling." ;
             rdfs:label "drain pasta" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#grateParmesan
 :grateParmesan rdf:type owl:NamedIndividual ,
-                        strc:SubActivity ;
-               strc:hasSuccessor :addWater ;
-               strc:isSubActivityOf :prepareSeasoning ;
-               strc:hasPriority 1 ;
+                        pks:SubActivity ;
+               pks:hasSuccessor :addWater ;
+               pks:isSubActivityOf :prepareSeasoning ;
+               pks:hasPriority 1 ;
                rdfs:comment "Refers to the process of grating or finely shredding Parmesan cheese, which is a popular ingredient used to add a savory taste to pasta dishes." ;
                rdfs:label "grate parmesan" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#mix
 :mix rdf:type owl:NamedIndividual ,
-              strc:SubActivity ;
-     strc:after :addWater ,
+              pks:SubActivity ;
+     pks:after :addWater ,
                 :tostPepper ;
-     strc:isSubActivityOf :prepareSeasoning ;
-     strc:hasPriority 3 ;
+     pks:isSubActivityOf :prepareSeasoning ;
+     pks:hasPriority 3 ;
      rdfs:comment "Involves the step of combining or blending different ingredients together. This mixing process helps to evenly distribute the flavors and create a well-balanced seasoning mixture." ;
      rdfs:label "mix ingredients" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#prepareDessert
 :prepareDessert rdf:type owl:NamedIndividual ,
-                         strc:SubActivity ;
-                strc:after :waitCooking ;
-                strc:isOptional :waitCooking ;
-                strc:hasPriority 5 ;
+                         pks:SubActivity ;
+                pks:after :waitCooking ;
+                pks:isOptional :waitCooking ;
+                pks:hasPriority 5 ;
                 rdfs:comment "This activity involves the preparation of a dessert to complement the pasta dish or serve as a separate sweet treat." ;
                 rdfs:label "prepare a dessert" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#prepareSeasoning
 :prepareSeasoning rdf:type owl:NamedIndividual ,
-                           strc:Activity ,
-                           strc:SubActivity ;
-                  strc:after :addPasta ;
-                  strc:hasSuccessor :seasonPasta ;
-                  strc:isSubActivityOf :cookPasta ;
-                  strc:hasPriority 4 ;
+                           pks:Activity ,
+                           pks:SubActivity ;
+                  pks:after :addPasta ;
+                  pks:hasSuccessor :seasonPasta ;
+                  pks:isSubActivityOf :cookPasta ;
+                  pks:hasPriority 4 ;
                   rdfs:comment "Represents the step of gathering or preparing the various seasonings or ingredients that will be added to the cooked pasta to enhance its taste." ;
                   rdfs:label "prepare seasoning" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#seasonPasta
 :seasonPasta rdf:type owl:NamedIndividual ,
-                      strc:SubActivity ;
-             strc:after :drainPasta ,
+                      pks:SubActivity ;
+             pks:after :drainPasta ,
                         :prepareSeasoning ;
-             strc:hasSuccessor :servePasta ;
-             strc:isSubActivityOf :cookPasta ;
-             strc:hasPriority 6 ;
+             pks:hasSuccessor :servePasta ;
+             pks:isSubActivityOf :cookPasta ;
+             pks:hasPriority 6 ;
              rdfs:comment "Represents the action of adding the desired seasonings or ingredients to the cooked pasta to infuse it with flavors." ;
              rdfs:label "season pasta" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#servePasta
 :servePasta rdf:type owl:NamedIndividual ,
-                     strc:SubActivity ;
-            strc:after :seasonPasta ;
-            strc:isSubActivityOf :cookPasta ;
-            strc:hasPriority 7 ;
+                     pks:SubActivity ;
+            pks:after :seasonPasta ;
+            pks:isSubActivityOf :cookPasta ;
+            pks:hasPriority 7 ;
             rdfs:comment "Represents the final step of presenting the cooked and seasoned pasta in a dish or plate, ready to be enjoyed." ;
             rdfs:label "serve pasta" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#tostPepper
 :tostPepper rdf:type owl:NamedIndividual ,
-                     strc:SubActivity ;
-            strc:hasSuccessor :mix ;
-            strc:isSubActivityOf :prepareSeasoning ;
-            strc:hasPriority 1 ;
+                     pks:SubActivity ;
+            pks:hasSuccessor :mix ;
+            pks:isSubActivityOf :prepareSeasoning ;
+            pks:hasPriority 1 ;
             rdfs:comment "Represents the action of toasting or roasting black peppercorns before grinding them. Toasting brings out the flavor of the pepper and adds a slightly smoky taste to the seasoning." ;
             rdfs:label "toast pepper" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/cookingPasta.ttl#waitCooking
 :waitCooking rdf:type owl:NamedIndividual ,
-                      strc:SubActivity ;
-             strc:after :addPasta ;
-             strc:hasOptional :prepareDessert ;
-             strc:hasSuccessor :drainPasta ;
-             strc:isSubActivityOf :cookPasta ;
-             strc:hasPriority 4 ;
+                      pks:SubActivity ;
+             pks:after :addPasta ;
+             pks:hasOptional :prepareDessert ;
+             pks:hasSuccessor :drainPasta ;
+             pks:isSubActivityOf :cookPasta ;
+             pks:hasPriority 4 ;
              rdfs:comment "Represents the period of time during the cooking process where the pasta is left to cook, allowing it to reach the desired level of tenderness." ;
              rdfs:label "wait for cooking" .
 
