@@ -212,7 +212,7 @@ This process describe how to fulfill the O.F.A.""" ;
        pks:isSubActivityOf :telemacoRecoveryProcess ;
        pks:hasPriority 2;
        rdfs:comment "Test after the self-study recovery course" ;
-       rdfs:label "TE.S.E.O. stands for \"TEst for Fulfillment of Additional Educational Obligations.\"" .
+       rdfs:label "TE.S.E.O. stands for TEst for Fulfillment of Additional Educational Obligations." .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#teseoRecoveryProcess
