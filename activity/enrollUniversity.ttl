@@ -92,7 +92,7 @@ These exceptions include students who already possess a valid B1 English certifi
              pks:isSubActivityOf :enrollUniversity ;
              pks:hasPriority 3 ;
              rdfs:comment "Sustain the initial preparation assessment" ;
-             rdfs:label "Initial preparation assessments" .
+             rdfs:label "Initial tests for preparation assessments" .
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#italianTest
