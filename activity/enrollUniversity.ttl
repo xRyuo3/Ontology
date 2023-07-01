@@ -1,0 +1,225 @@
+@prefix : <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pks: <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#> .
+
+<https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl> rdf:type owl:Ontology ;
+                                                                                         owl:imports <https://raw.githubusercontent.com/xRyuo3/Ontology/main/procedure_structure/procedure_structure.ttl> .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#assessmentTest
+:assessmentTest rdf:type owl:NamedIndividual ,
+                         pks:SubActivity ;
+                pks:isOptional :initalTests ;
+                pks:isSubActivityOf :initalTests ;
+                pks:hasPriority 1 ;
+                rdfs:comment """The Assessment Test (AT) is an English language evaluation test that must be taken by first-year students enrolling in three-year degree programs or single-cycle degree programs in the academic year 2023/2024. The test is at the B1 level, which corresponds to a basic level of English proficiency.
+However, there are some exceptions where students are not required to take the AT.
+These exceptions include students who already possess a valid B1 English certification or a higher level of English proficiency. These students are exempt from taking the AT. Additionally, students enrolled in specific degree programs such as Chemistry and Pharmaceutical Technology, Philosophy, Law, Modern Languages and Cultures, Literature, Maritime Science and Technology, Psychological Sciences and Techniques, Primary Education Sciences, Education Sciences, Tourism Sciences: Enterprise, Culture and Territory, History, and Interlinguistic Mediation Theories and Techniques (TTMI), as well as Medicine and Surgery, and Dentistry and Dental Prosthetics, are also exempted from the AT.""" ;
+                rdfs:label "Assessment Test" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#confirmEnrollment
+:confirmEnrollment rdf:type owl:NamedIndividual ,
+                            pks:SubActivity ;
+                   pks:after :onlinePreEnrollment ;
+                   pks:before :taxPayment ;
+                   pks:isSubActivityOf :enrollUniversity ;
+                   pks:hasPriority 3;
+                   rdfs:comment "Confirm the online pre-enrollment application" ;
+                   rdfs:label "Confirm the pre-enrollment application" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#enrollUniversity
+:enrollUniversity rdf:type owl:NamedIndividual ,
+                           pks:Activity ;
+                  pks:after :highSchoolGraduation ;
+                  pks:before :confirmEnrollment ;
+                  rdfs:comment "This is the enrollment process at the University of Genova for students interested in pursuing a bachelor's degree." ;
+                  rdfs:label "enrollment process at the University of Genova" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#failALI
+:failALI rdf:type owl:NamedIndividual ,
+                  pks:SubActivity ;
+         rdfs:comment "Fail Algebra and Logic for Computer Science." ;
+         rdfs:label "Fail Algebra and Logic for Computer Science." .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#failCalculus
+:failCalculus rdf:type owl:NamedIndividual ,
+                       pks:SubActivity ;
+              rdfs:comment "Failure of Calculus Exam" ;
+              rdfs:label "Fail Calculus Exam" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#failTeseo
+:failTeseo rdf:type owl:NamedIndividual ,
+                    pks:SubActivity ;
+           rdfs:comment "Fail Teseo Test" ;
+           rdfs:label "Fail Teseo Test" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#foreignHighSchoolGraduation
+:foreignHighSchoolGraduation rdf:type owl:NamedIndividual ;
+                             pks:after :foreignHighSchoolGraduation ;
+                             pks:isOptional :initalTests ;
+                             pks:hasPriority 1;
+                             rdfs:comment "Foreign High School Graduation" ;
+                             rdfs:label "Foreign High School Graduation" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#highSchoolGraduation
+:highSchoolGraduation rdf:type owl:NamedIndividual ,
+                               pks:SubActivity ;
+                      rdfs:comment "Is awarded by students who have successfully completed their studies at a high school or secondary school" ;
+                      rdfs:label "High School Graduation" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#initalTests
+:initalTests rdf:type owl:NamedIndividual ,
+                      pks:Activity ,
+                      pks:SubActivity ;
+             pks:after :onlinePreEnrollment ;
+             pks:isOptional :onlinePreEnrollment ;
+             pks:isSubActivityOf :enrollUniversity ;
+             pks:hasPriority 3 ;
+             rdfs:comment "Sustain the initial preparation assessment" ;
+             rdfs:label "Initial preparation assessments" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#italianTest
+:italianTest rdf:type owl:NamedIndividual ;
+             pks:isOptional :initalTests ;
+             pks:isSubActivityOf :initalTests ;
+             rdfs:comment "Test to assess Italian language skills" ;
+             rdfs:label "Italian Assessment Test" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#onlinePreEnrollment
+:onlinePreEnrollment rdf:type owl:NamedIndividual ,
+                              pks:SubActivity ;
+                     pks:after :highSchoolGraduation ;
+                     pks:before :confirmEnrollment ;
+                     pks:isSubActivityOf :enrollUniversity ;
+                     pks:hasPriority 2;
+                     rdfs:comment "Compile and submit the pre-enrollment online appication, on the website you will need to enter the credentials received during the registration process." ;
+                     rdfs:label "Pre-enrollment" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#passALI
+:passALI rdf:type owl:NamedIndividual ,
+                  pks:SubActivity ;
+         pks:after :failTeseo ;
+         pks:hasOptional :failCalculus ,
+                         :repeatUniversityYear ;
+         pks:isSubActivityOf :teseoRecoveryProcess ;
+         pks:hasPriority 1;
+         rdfs:comment "You need to take and pass the exam in Algebra and Logic for Computer Science." ;
+         rdfs:label "Pass Algebra and Logic for Computer Science Exam" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#passCalculus
+:passCalculus rdf:type owl:NamedIndividual ,
+                       pks:SubActivity ;
+              pks:after :failTeseo ;
+              pks:hasOptional :failALI ,
+                              :repeatUniversityYear ;
+              pks:isSubActivityOf :teseoRecoveryProcess ;
+              pks:hasPriority 1;
+              rdfs:comment "You need to take and pass the exam in Calculus for Computer Science." ;
+              rdfs:label "Calculus for Computer Science" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#perseo
+:perseo rdf:type owl:NamedIndividual ,
+                 pks:SubActivity ;
+        pks:after :telemaco ;
+        pks:before :teseo ;
+        pks:isSubActivityOf :telemacoRecoveryProcess ;
+        pks:hasPriority 1;
+        rdfs:comment "PER.S.E.O. is delivered through the university's distance learning platform (Aulaweb), allowing unrestricted access at any time. There are three different sections of PER.S.E.O: one for the common core and one for each differentiated section (extension_M, extension_T)." ;
+        rdfs:label "PER.S.E.O. (Support Path for Possible OFA)" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#registration
+:registration rdf:type owl:NamedIndividual ,
+                       pks:SubActivity ;
+              pks:before :onlinePreEnrollment ;
+              pks:isSubActivityOf :enrollUniversity ;
+              pks:hasPriority 1;
+              rdfs:comment "Access the UniGe Portal  (if you have never been enrolled at the University of Genova) and obtain UniGePASS credentials." ;
+              rdfs:label "registration at the UniGe Portal" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#repeatUniversityYear
+:repeatUniversityYear rdf:type owl:NamedIndividual ,
+                               pks:SubActivity ;
+                      rdfs:comment "By repeating the university year, the student has the opportunity to retake the courses or exams they didn't pass in order to fulfill the requirements for that particular year or level of study." ;
+                      rdfs:label "Re-enroll in the same academic year" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#taxPayment
+:taxPayment rdf:type owl:NamedIndividual ,
+                     pks:SubActivity ;
+            pks:after :confirmEnrollment ;
+            pks:isSubActivityOf :enrollUniversity ;
+            pks:hasPriority 4;
+            rdfs:comment "Pay the first installment of the tuition fees according to the methods and deadlines provided." ;
+            rdfs:label "Pay the first installment of the tuition" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#telemaco
+:telemaco rdf:type owl:NamedIndividual ,
+                   pks:SubActivity ;
+          pks:hasOptional :telemacoRecoveryProcess ;
+          pks:isOptional :initalTests ;
+          pks:isSubActivityOf :initalTests ;
+          pks:hasPriority 1;
+          rdfs:comment """The assessment of the initial preparation for this course is carried out through TE.L.E.MA.CO, a test of Logic, Mathematics, and Verbal.
+
+TE.L.E.MA.CO is divided into two sections:
+A common core for all Study Programs (CdS), aimed at assessing basic skills in understanding texts in the Italian language (literacy) and logical reasoning abilities (numeracy).
+A differentiated section based on the chosen Study Program, aimed at assessing:
+Basic skills in mathematics and logic and their application to experimental sciences (extension-M).
+The ability to perform advanced analysis of different types of texts (extension-T).
+
+Several categories of students are exempt from taking the TE.L.E.MA.CO assessment, including those with high scores in the final state examination(>=90), holders of a previous degree, those who have already passed a compatible assessment, transferring students with sufficient credits, and students of the University Penitentiary Pole (PUP).
+The""" ;
+          rdfs:label "TE.L.E.MA.CO, a test of Logic, Mathematics, and Verbal Comprehension." .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#telemacoRecoveryProcess
+:telemacoRecoveryProcess rdf:type owl:NamedIndividual ,
+                                  pks:Activity ;
+                         rdfs:comment """Students who neither participate in any edition of TE.L.E.MA.CO nor pass the test will automatically receive Additional Educational Obligations (O.F.A.) mandated by the Study Program.
+This process describe how to fulfill the O.F.A.""" ;
+                         rdfs:label "Telemaco Recovery Process" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#teseo
+:teseo rdf:type owl:NamedIndividual ,
+                pks:SubActivity ;
+       pks:after :perseo ;
+       pks:hasOptional :teseoRecoveryProcess ;
+       pks:isSubActivityOf :telemacoRecoveryProcess ;
+       pks:hasPriority 2;
+       rdfs:comment "Test after the self-study recovery course" ;
+       rdfs:label "TE.S.E.O. stands for \"TEst for Fulfillment of Additional Educational Obligations.\"" .
+
+
+###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#teseoRecoveryProcess
+:teseoRecoveryProcess rdf:type owl:NamedIndividual ,
+                               pks:Activity ;
+                      rdfs:comment "Following the failure to pass all three TE.S.E.O. tests, in order to fulfill the Additional Educational Obligations (O.F.A.), the student will need to earn at least 12 CFU (university credits) by successfully passing the exams of the priority subjects listed in the appendix for each Study Program (CdS)." ;
+                      rdfs:label "Teseo Recovery Process" .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
