@@ -96,7 +96,8 @@ These exceptions include students who already possess a valid B1 English certifi
 
 
 ###  https://raw.githubusercontent.com/xRyuo3/Ontology/main/activity/enrollUniversity.ttl#italianTest
-:italianTest rdf:type owl:NamedIndividual ;
+:italianTest rdf:type owl:NamedIndividual ,
+                          pks:SubActivity ;
              pks:isOptional :initalTests ;
              pks:isSubActivityOf :initalTests ;
              rdfs:comment "Test to assess Italian language skills" ;
