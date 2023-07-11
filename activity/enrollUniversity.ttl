@@ -100,6 +100,7 @@ These exceptions include students who already possess a valid B1 English certifi
                           pks:SubActivity ;
              pks:isOptional :initalTests ;
              pks:isSubActivityOf :initalTests ;
+             pks:hasPriority 1;
              rdfs:comment "Test to assess Italian language skills" ;
              rdfs:label "Italian Assessment Test" .
 
